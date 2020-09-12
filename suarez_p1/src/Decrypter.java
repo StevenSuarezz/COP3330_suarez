@@ -26,7 +26,7 @@ public class Decrypter {
             digits[i] = (digits[i] + 3) % 10;
         }
 
-        // Step 3: Return the encrypted integer as a String
+        // Step 3: Return the decrypted integer as a String
         return "" + digits[0] + digits[1] + digits[2] + digits[3];
     }
 }

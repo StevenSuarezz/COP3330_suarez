@@ -7,10 +7,10 @@ public class TaskItem {
     private LocalDate dueDate; // YYYY-MM-DD format
     private boolean completed;
 
-    public TaskItem () {
-        this.title = "";
-        this.description = "";
-        this.dueDate = LocalDate.now();
+    public TaskItem (String title, String description, String dueDate) throws IllegalArgumentException, DateTimeParseException {
+        SetTitle(title);
+        this.description = description;
+        SetDueDate(dueDate);
         completed = false;
     }
 
@@ -52,6 +52,7 @@ public class TaskItem {
 
     @Override
     public String toString() {
-        return "[" + dueDate.toString() + "] " + title + ": " + description;
+        String item = "[" + dueDate.toString() + "] " + title + ": " + description;
+        return completed ? "✓ " + item : item;
     }
 }

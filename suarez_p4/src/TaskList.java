@@ -23,4 +23,14 @@ public class TaskList {
     public ArrayList<TaskItem> GetTaskItems() {
         return taskItems;
     }
+
+    public ArrayList<TaskItem> GetTaskItems(boolean completed) {
+        ArrayList<TaskItem> items = new ArrayList<TaskItem>();
+        for (TaskItem ti : taskItems){
+            if (ti.isCompleted() == completed)
+                items.add(ti);
+        }
+        return items;
+    }
+
 }

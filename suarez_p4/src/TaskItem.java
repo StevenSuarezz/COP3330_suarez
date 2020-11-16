@@ -14,6 +14,13 @@ public class TaskItem {
         completed = false;
     }
 
+    public TaskItem (String title, String description, String dueDate, boolean completed) throws IllegalArgumentException, DateTimeParseException {
+        SetTitle(title);
+        this.description = description;
+        SetDueDate(dueDate);
+        this.completed = completed;
+    }
+
     // Setters -------------------
     public void SetTitle (String title) throws IllegalArgumentException {
         if(title.length() < 1)

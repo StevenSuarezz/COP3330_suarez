@@ -1,51 +1,115 @@
 import org.junit.jupiter.api.Test;
-
 import java.time.format.DateTimeParseException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaskListTest {
     @Test
-    public void creatingTaskItemFailsWithInvalidDueDate() {
-        assertThrows(DateTimeParseException.class, () -> new TaskItem("Valid Title", "Valid Description", "Invalid Date"));
+    public void completingTaskItemChangesStatus() {
+
     }
 
     @Test
-    public void creatingTaskItemFailsWithInvalidTitle() {
-        assertThrows(IllegalArgumentException.class, () -> new TaskItem("", "Valid Description", "2020-11-16"));
+    public void completingTaskItemFailsWithInvalidIndex() {
+
     }
 
     @Test
-    public void creatingTaskItemSucceedsWithValidDueDate() {
-        assertDoesNotThrow(() ->  new TaskItem("Title", "Description", "2020-11-16"));
+    public void editingTaskItemChangesValues() {
+
     }
 
     @Test
-    public void creatingTaskItemSucceedsWithValidTitle() {
-        assertDoesNotThrow(() ->  new TaskItem("Valid Title", "Description", "2020-11-16"));
+    public void editingTaskItemDescriptionChangesValue() {
+
     }
 
     @Test
-    public void settingTaskItemDueDateFailsWithInvalidDate() {
-        TaskItem ti = new TaskItem("Title", "Description", "2020-11-16");
-        assertThrows(DateTimeParseException.class, () -> ti.SetDueDate("Invalid due date"));
+    public void editingTaskItemDescriptionFailsWithInvalidIndex() {
+
     }
 
     @Test
-    public void settingTaskItemDueDateSucceedsWithValidDate() {
-        TaskItem ti = new TaskItem("Title", "Description", "2020-11-16");
-        assertDoesNotThrow(() -> ti.SetDueDate("2020-11-17"));
+    public void editingTaskItemDueDateChangesValue() {
+
     }
 
     @Test
-    public void settingTaskItemTitleFailsWithInvalidTitle() {
-        TaskItem ti = new TaskItem("Title", "Description", "2020-11-16");
-        assertThrows(IllegalArgumentException.class, () -> ti.SetTitle(""));
+    public void editingTaskItemDueDateFailsWithInvalidIndex() {
+
     }
 
     @Test
-    public void settingTaskItemTitleSucceedsWithValidTitle() {
-        TaskItem ti = new TaskItem("Title", "Description", "2020-11-16");
-        assertDoesNotThrow(() -> ti.SetTitle("Valid"));
+    public void editingTaskItemTitleChangesValue() {
+
     }
+
+    @Test
+    public void editingTaskItemTitleFailsWithInvalidIndex() {
+
+    }
+
+    @Test
+    public void gettingTaskItemDescriptionFailsWithInvalidIndex() {
+
+    }
+
+    @Test
+    public void gettingTaskItemDescriptionSucceedsWithValidIndex() {
+
+    }
+
+    @Test
+    public void gettingTaskItemDueDateFailsWithInvalidIndex() {
+
+    }
+
+    @Test
+    public void gettingTaskItemDueDateSucceedsWithValidIndex() {
+
+    }
+
+    @Test
+    public void gettingTaskItemTitleFailsWithInvalidIndex() {
+
+    }
+
+    @Test
+    public void gettingTaskItemTitleSucceedsWithValidIndex() {
+
+    }
+
+
+    @Test
+    public void newTaskListIsEmpty() {
+
+    }
+
+
+    @Test
+    public void removingTaskItemsDecreasesSize() {
+
+    }
+
+
+    @Test
+    public void removingTaskItemsFailsWithInvalidIndex() {
+
+    }
+
+
+    @Test
+    public void savedTaskListCanBeLoaded() {
+
+    }
+
+    @Test
+    public void uncompletingTaskItemChangesStatus() {
+
+    }
+
+    @Test
+    public void uncompletingTaskItemFailsWithInvalidIndex() {
+
+    }
+
 }

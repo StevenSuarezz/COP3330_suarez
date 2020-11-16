@@ -26,24 +26,24 @@ class TaskItemTest {
     @Test
     public void settingTaskItemDueDateFailsWithInvalidDate() {
         TaskItem ti = new TaskItem("Title", "Description", "2020-11-16");
-        assertThrows(DateTimeParseException.class, () -> ti.SetDueDate("Invalid due date"));
+        assertThrows(DateTimeParseException.class, () -> ti.setDueDate("Invalid due date"));
     }
 
     @Test
     public void settingTaskItemDueDateSucceedsWithValidDate() {
         TaskItem ti = new TaskItem("Title", "Description", "2020-11-16");
-        assertDoesNotThrow(() -> ti.SetDueDate("2020-11-17"));
+        assertDoesNotThrow(() -> ti.setDueDate("2020-11-17"));
     }
 
     @Test
     public void settingTaskItemTitleFailsWithInvalidTitle() {
         TaskItem ti = new TaskItem("Title", "Description", "2020-11-16");
-        assertThrows(IllegalArgumentException.class, () -> ti.SetTitle(""));
+        assertThrows(IllegalArgumentException.class, () -> ti.setTitle(""));
     }
 
     @Test
     public void settingTaskItemTitleSucceedsWithValidTitle() {
         TaskItem ti = new TaskItem("Title", "Description", "2020-11-16");
-        assertDoesNotThrow(() -> ti.SetTitle("Valid"));
+        assertDoesNotThrow(() -> ti.setTitle("Valid"));
     }
 }

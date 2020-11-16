@@ -38,7 +38,6 @@ public class App {
                 scan.nextLine();
             }
         }
-
     }
 
     private static void CreateNewListMenu (Scanner scan) {
@@ -108,7 +107,7 @@ public class App {
         try{
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 
-            for(TaskItem ti : taskList.GetTaskItems()) {
+            for(TaskItem ti : taskList.getTaskItems()) {
                 writer.write(ti.getTitle() + "," + ti.getDescription() + "," + ti.getDueDate() + "," + ti.isCompleted() + "\n");
             }
             writer.close();
@@ -131,8 +130,8 @@ public class App {
 
         System.out.println("-----------------");
 
-        for (int i = 0; i < taskList.GetTaskItems(!markComplete).size(); i++) {
-            System.out.println(i + ") " + taskList.GetTaskItems(!markComplete).get(i).toString());
+        for (int i = 0; i < taskList.getTaskItemsByCompletion(!markComplete).size(); i++) {
+            System.out.println(i + ") " + taskList.getTaskItemsByCompletion(!markComplete).get(i).toString());
         }
 
         System.out.print("\n");
@@ -145,7 +144,7 @@ public class App {
 
         try {
             int choice = scan.nextInt();
-            taskList.GetTaskItems().get(choice).SetCompleted(markComplete);
+            taskList.editItemComplete(choice, markComplete);
             System.out.print("\n");
         } catch(IndexOutOfBoundsException e) {
             System.out.println("Please select a valid task to edit\n");
@@ -158,7 +157,7 @@ public class App {
         System.out.print("Which task would you like to remove? ");
         try{
             int choice = scan.nextInt();
-            taskList.RemoveTask(choice);
+            taskList.removeTask(choice);
             System.out.print("\n");
         } catch(IndexOutOfBoundsException e) {
             System.out.println("Please select a valid task to remove\n");
@@ -171,7 +170,7 @@ public class App {
         System.out.print("Which task would you like to edit? ");
         try {
             int choice = scan.nextInt();
-            taskList.GetTaskItems().get(choice); // Check for an index out of bounds error before continuing
+            taskList.getTaskItemByIndex(choice); // Check for an index out of bounds error before continuing
             scan.nextLine(); // Clear buffer
 
             System.out.print("Enter a new title for task " + choice + ": ");
@@ -183,9 +182,10 @@ public class App {
             System.out.print("Enter a new due date (YYYY-MM-DD) for task " + choice + ": ");
             String newDueDate = scan.nextLine();
 
-            taskList.GetTaskItems().get(choice).SetTitle(newTitle);
-            taskList.GetTaskItems().get(choice).SetDescription(newDescription);
-            taskList.GetTaskItems().get(choice).SetDueDate(newDueDate);
+            taskList.editItemTitle(choice, newTitle);
+            taskList.editItemDescription(choice, newDescription);
+            taskList.editItemDueDate(choice, newDueDate);
+
         } catch (IllegalArgumentException titleException) {
             System.out.println("WARNING: title must be at least 1 character long; task not edited");
         } catch (DateTimeParseException dueDateException) {
@@ -194,7 +194,6 @@ public class App {
             System.out.println("Please select a valid task to edit\n");
         }
         System.out.print("\n");
-
     }
 
     private static void addItemToList(Scanner scan, TaskList taskList) {
@@ -212,7 +211,7 @@ public class App {
 
         try {
             taskItem = new TaskItem(title, description, dueDate);
-            taskList.AddTask(taskItem);
+            taskList.addTask(taskItem);
         } catch (IllegalArgumentException titleException) {
             System.out.println("WARNING: title must be at least 1 character long; task not created");
         } catch (DateTimeParseException dueDateException) {
@@ -226,8 +225,8 @@ public class App {
         System.out.println("Current tasks");
         System.out.println("-------------");
 
-        for (int i = 0; i < taskList.GetTaskItems().size(); i++) {
-            System.out.println(i + ") " + taskList.GetTaskItems().get(i).toString());
+        for (int i = 0; i < taskList.getTaskItems().size(); i++) {
+            System.out.println(i + ") " + taskList.getTaskItemByIndex(i).toString());
         }
 
         System.out.print("\n\n");
@@ -244,7 +243,7 @@ public class App {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                taskList.AddTask(new TaskItem(values[0], values[1], values[2], Boolean.parseBoolean(values[3])));
+                taskList.addTask(new TaskItem(values[0], values[1], values[2], Boolean.parseBoolean(values[3])));
             }
             br.close();
         } catch (FileNotFoundException e) {

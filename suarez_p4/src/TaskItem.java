@@ -8,35 +8,35 @@ public class TaskItem {
     private boolean completed;
 
     public TaskItem (String title, String description, String dueDate) throws IllegalArgumentException, DateTimeParseException {
-        SetTitle(title);
+        setTitle(title);
         this.description = description;
-        SetDueDate(dueDate);
+        setDueDate(dueDate);
         completed = false;
     }
 
     public TaskItem (String title, String description, String dueDate, boolean completed) throws IllegalArgumentException, DateTimeParseException {
-        SetTitle(title);
+        setTitle(title);
         this.description = description;
-        SetDueDate(dueDate);
+        setDueDate(dueDate);
         this.completed = completed;
     }
 
     // Setters -------------------
-    public void SetTitle (String title) throws IllegalArgumentException {
+    public void setTitle(String title) throws IllegalArgumentException {
         if(title.length() < 1)
             throw new IllegalArgumentException("Invalid Title");
         this.title = title;
     }
 
-    public void SetDueDate (String dueDate) throws DateTimeParseException {
+    public void setDueDate(String dueDate) throws DateTimeParseException {
         this.dueDate = LocalDate.parse(dueDate);
     }
 
-    public void SetCompleted (boolean completed) {
+    public void setCompleted(boolean completed) {
         this.completed = completed;
     }
 
-    public void SetDescription  (String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

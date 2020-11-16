@@ -7,30 +7,45 @@ public class TaskList {
         this.taskItems = new ArrayList<TaskItem>();
     }
 
-    public void AddTask(TaskItem taskItem) {
+    public void addTask(TaskItem taskItem) {
         taskItems.add(taskItem);
     }
 
-    public void RemoveTask (int index) {
+    public void removeTask(int index) {
         taskItems.remove(index);
-        // Will probably need some error handling here as well
     }
 
-    public void MarkItemComplete (int index, boolean completed) {
-        taskItems.get(index).SetCompleted(completed);
+    public void editItemTitle (int index, String newTitle) {
+        taskItems.get(index).setTitle(newTitle);
     }
 
-    public ArrayList<TaskItem> GetTaskItems() {
+    public void editItemDescription (int index, String newDesc) {
+        taskItems.get(index).setDescription(newDesc);
+    }
+
+    public void editItemDueDate (int index, String newDate) {
+        taskItems.get(index).setDueDate(newDate);
+    }
+
+    public void editItemComplete(int index, boolean completed) {
+        taskItems.get(index).setCompleted(completed);
+    }
+
+    public ArrayList<TaskItem> getTaskItems() {
         return taskItems;
     }
 
-    public ArrayList<TaskItem> GetTaskItems(boolean completed) {
+    public ArrayList<TaskItem> getTaskItemsByCompletion(boolean completed) {
         ArrayList<TaskItem> items = new ArrayList<TaskItem>();
         for (TaskItem ti : taskItems){
             if (ti.isCompleted() == completed)
                 items.add(ti);
         }
         return items;
+    }
+
+    public TaskItem getTaskItemByIndex(int index) {
+        return taskItems.get(index);
     }
 
 }

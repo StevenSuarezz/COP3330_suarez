@@ -12,6 +12,7 @@ public class App {
 
     private void mainMenu() {
         Scanner scan = new Scanner(System.in);
+
         mainMenuPrints();
 
         int choice = -1;
@@ -21,11 +22,11 @@ public class App {
                 choice = scan.nextInt();
                 switch (choice) {
                     case 1:
-                        CreateNewListMenu(scan);
+                        taskList(scan);
                         mainMenuPrints();
                         break;
                     case 2:
-                        loadExistingList(scan);
+                        contactList(scan);
                         mainMenuPrints();
                         break;
                     case 3:
@@ -41,14 +42,80 @@ public class App {
         }
     }
 
-    private void CreateNewListMenu (Scanner scan) {
+    private void contactList(Scanner scan) {
+        listMenuPrints();
+
+        int choice = -1;
+
+        while (choice != 3) {
+            try {
+                choice = scan.nextInt();
+                switch (choice) {
+                    case 1:
+                        createNewContactListMenu(scan);
+                        listMenuPrints();
+                        break;
+                    case 2:
+                        loadExistingContactList(scan);
+                        listMenuPrints();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.out.println("Please choose a valid option");
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid option");
+                scan.nextLine();
+            }
+        }
+    }
+
+    private void loadExistingContactList(Scanner scan) {
+    }
+
+    private void createNewContactListMenu(Scanner scan) {
+    }
+
+    private void taskList(Scanner scan) {
+        listMenuPrints();
+
+        int choice = -1;
+
+        while (choice != 3) {
+            try {
+                choice = scan.nextInt();
+                switch (choice) {
+                    case 1:
+                        createNewTaskListMenu(scan);
+                        listMenuPrints();
+                        break;
+                    case 2:
+                        loadExistingTaskList(scan);
+                        listMenuPrints();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        System.out.println("Please choose a valid option");
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid option");
+                scan.nextLine();
+            }
+        }
+    }
+
+    private void createNewTaskListMenu(Scanner scan) {
         TaskList taskList = new TaskList();
         System.out.println("A new list has been created\n");
         listOperationMenu(scan, taskList);
     }
 
     private void listOperationMenu(Scanner scan, TaskList taskList) {
-        newListMenuPrints();
+        newTaskListMenuPrints();
 
         int choice = -1;
 
@@ -60,31 +127,31 @@ public class App {
                 switch (choice) {
                     case 1:
                         viewTaskList(taskList);
-                        newListMenuPrints();
+                        newTaskListMenuPrints();
                         break;
                     case 2:
                         addItemToList(scan, taskList);
-                        newListMenuPrints();
+                        newTaskListMenuPrints();
                         break;
                     case 3:
                         editItem(scan, taskList);
-                        newListMenuPrints();
+                        newTaskListMenuPrints();
                         break;
                     case 4:
                         removeItem(scan, taskList);
-                        newListMenuPrints();
+                        newTaskListMenuPrints();
                         break;
                     case 5:
                         markItemComplete(scan, taskList, true);
-                        newListMenuPrints();
+                        newTaskListMenuPrints();
                         break;
                     case 6:
                         markItemComplete(scan, taskList, false);
-                        newListMenuPrints();
+                        newTaskListMenuPrints();
                         break;
                     case 7:
                         saveListToTxtFile(scan, taskList);
-                        newListMenuPrints();
+                        newTaskListMenuPrints();
                         break;
                     case 8:
                         break;
@@ -94,7 +161,7 @@ public class App {
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a valid option\n");
                 scan.nextLine();
-                newListMenuPrints();
+                newTaskListMenuPrints();
             }
         }
 
@@ -233,7 +300,7 @@ public class App {
         System.out.print("\n\n");
     }
 
-    private void loadExistingList(Scanner scan) {
+    private void loadExistingTaskList(Scanner scan) {
         System.out.print("Enter the filename to load: ");
         scan.nextLine();
         String filePath = System.getProperty("user.dir") + "\\" + scan.nextLine();
@@ -258,7 +325,7 @@ public class App {
         listOperationMenu(scan, taskList);
     }
 
-    private void newListMenuPrints() {
+    private void newTaskListMenuPrints() {
         System.out.println("List Operation Menu");
         System.out.println("-------------------\n");
         System.out.println("1) View the list");
@@ -271,11 +338,30 @@ public class App {
         System.out.println("8) Quit to the main menu");
     }
 
-    private void mainMenuPrints() {
+    private void newContactListMenuPrints() {
+        System.out.println("List Operation Menu");
+        System.out.println("-------------------\n");
+        System.out.println("1) View the list");
+        System.out.println("2) Add an item");
+        System.out.println("3) Edit an item");
+        System.out.println("4) Remove an item");
+        System.out.println("7) Save the current list");
+        System.out.println("8) Quit to the main menu");
+    }
+
+    private void listMenuPrints() {
         System.out.println("Main Menu");
         System.out.println("----------\n");
         System.out.println("1) Create a new list");
         System.out.println("2) Load an existing list");
+        System.out.println("3) Quit");
+    }
+
+    private void mainMenuPrints(){
+        System.out.println("Select your application");
+        System.out.println("-----------------------\n");
+        System.out.println("1) Task list");
+        System.out.println("2) Contact list");
         System.out.println("3) Quit");
     }
 

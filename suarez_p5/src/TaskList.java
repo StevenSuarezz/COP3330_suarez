@@ -4,7 +4,7 @@ public class TaskList {
     private ArrayList<TaskItem> taskItems;
 
     public TaskList() {
-        this.taskItems = new ArrayList<TaskItem>();
+        this.taskItems = new ArrayList<>();
     }
 
     public void addTask(TaskItem taskItem) {

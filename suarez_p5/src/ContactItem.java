@@ -47,8 +47,10 @@ public class ContactItem {
     public void setEmail(String email) throws ParseException {
         int atIndex = email.lastIndexOf("@");
         int dotIndex = email.lastIndexOf(".");
-        if (!email.equals("") && atIndex == -1 || dotIndex == -1 || dotIndex < atIndex){
-            throw new ParseException("Please enter a valid email", 0);
+        if (!email.equals("")) {
+            if (atIndex == -1 || dotIndex == -1 || dotIndex < atIndex) {
+                throw new ParseException("Please enter a valid email", 0);
+            }
         }
 
         this.email = email;

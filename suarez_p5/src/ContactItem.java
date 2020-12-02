@@ -34,15 +34,20 @@ public class ContactItem {
     }
 
     public void setPhoneNumber(String phoneNumber) throws ParseException {
-        if(!phoneNumber.equals("") && phoneNumber.charAt(3) != '-' && phoneNumber.charAt(7) != '-')
-            throw new ParseException("Please enter a valid phone number", 0);
+        if(!phoneNumber.equals(""))
+        {
+            if (phoneNumber.length() < 7 || phoneNumber.charAt(3) != '-' || phoneNumber.charAt(7) != '-') {
+                throw new ParseException("Please enter a valid phone number", 0);
+            }
+        }
 
         this.phoneNumber = phoneNumber;
     }
 
     public void setEmail(String email) throws ParseException {
-        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-        if (!email.matches(regex) && !email.equals("")){
+        int atIndex = email.lastIndexOf("@");
+        int dotIndex = email.lastIndexOf(".");
+        if (!email.equals("") && atIndex == -1 || dotIndex == -1 || dotIndex < atIndex){
             throw new ParseException("Please enter a valid email", 0);
         }
 

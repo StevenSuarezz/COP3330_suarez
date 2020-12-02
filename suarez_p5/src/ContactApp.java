@@ -1,6 +1,5 @@
 import java.io.*;
 import java.text.ParseException;
-import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -242,7 +241,7 @@ public class ContactApp {
         } catch (IllegalArgumentException argException) {
             System.out.println("WARNING: Contact must contain at least a name, phone, or email; contact not edited");
         } catch (ParseException parseException) {
-            System.out.println("WARNING: " + parseException.getMessage() + " contact not edited");
+            System.out.println("WARNING: " + parseException.getMessage() + "; Contact not edited");
         } catch (IndexOutOfBoundsException indexException) {
             System.out.println("Please select a valid task to edit\n");
         }

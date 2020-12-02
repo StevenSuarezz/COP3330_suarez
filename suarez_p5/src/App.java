@@ -26,7 +26,7 @@ public class App {
                         mainMenuPrints();
                         break;
                     case 2:
-                        contactList(scan);
+                        ContactApp contactApplication = new ContactApp(scan);
                         mainMenuPrints();
                         break;
                     case 3:

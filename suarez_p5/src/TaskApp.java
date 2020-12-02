@@ -43,10 +43,10 @@ public class TaskApp {
     private void createNewTaskListMenu(Scanner scan) {
         TaskList taskList = new TaskList();
         System.out.println("A new list has been created\n");
-        listOperationMenu(scan, taskList);
+        taskListOperationMenu(scan, taskList);
     }
 
-    private void listOperationMenu(Scanner scan, TaskList taskList) {
+    private void taskListOperationMenu(Scanner scan, TaskList taskList) {
         newTaskListMenuPrints();
 
         int choice = -1;
@@ -100,6 +100,12 @@ public class TaskApp {
     }
 
     private void saveListToTxtFile(Scanner scan, TaskList taskList) {
+        if(taskList.getTaskItems().size() == 0)
+        {
+            System.out.print("There are no tasks in your list. Please create one.\n");
+            return;
+        }
+
         System.out.print("Enter a file name: ");
         scan.nextLine();
         String fileName = System.getProperty("user.dir") + "\\" + scan.nextLine();
@@ -120,6 +126,12 @@ public class TaskApp {
     }
 
     private void markItemComplete(Scanner scan, TaskList taskList, boolean markComplete) {
+        if(taskList.getTaskItems().size() == 0)
+        {
+            System.out.print("There are no tasks in your list. Please create one.\n");
+            return;
+        }
+
         System.out.print("\n");
 
         if(markComplete) {
@@ -152,6 +164,12 @@ public class TaskApp {
     }
 
     private void removeItem(Scanner scan, TaskList taskList) {
+        if(taskList.getTaskItems().size() == 0)
+        {
+            System.out.print("There are no tasks in your list. Please create one.\n");
+            return;
+        }
+
         viewTaskList(taskList);
 
         System.out.print("Which task would you like to remove? ");
@@ -165,6 +183,12 @@ public class TaskApp {
     }
 
     private void editItem(Scanner scan, TaskList taskList) {
+        if(taskList.getTaskItems().size() == 0)
+        {
+            System.out.print("There are no tasks in your list. Please create one.\n");
+            return;
+        }
+
         viewTaskList(taskList);
 
         System.out.print("Which task would you like to edit? ");
@@ -197,6 +221,12 @@ public class TaskApp {
     }
 
     private void addItemToList(Scanner scan, TaskList taskList) {
+        if(taskList.getTaskItems().size() == 0)
+        {
+            System.out.print("There are no tasks in your list. Please create one.\n");
+            return;
+        }
+
         TaskItem taskItem;
         scan.nextLine(); // Clear buffer
 
@@ -221,6 +251,12 @@ public class TaskApp {
     }
 
     private void viewTaskList(TaskList taskList) {
+        if(taskList.getTaskItems().size() == 0)
+        {
+            System.out.print("There are no tasks in your list. Please create one.\n");
+            return;
+        }
+
         System.out.print("\n");
         System.out.println("Current tasks");
         System.out.println("-------------");
@@ -254,7 +290,7 @@ public class TaskApp {
 
         System.out.println("Task list was successfully loaded\n");
 
-        listOperationMenu(scan, taskList);
+        taskListOperationMenu(scan, taskList);
     }
 
     private void newTaskListMenuPrints() {
